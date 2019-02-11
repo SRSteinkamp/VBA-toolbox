@@ -62,9 +62,9 @@ dfvdx = (1./alpha).*fv;
 ff = (1-(1-E0).^(1./x2))./E0;
 % d[O2 extraction]/dXt(2)
 if ~in.logx2
-    dffdx = log(1-E0).*(1-E0).^(1./x2)./(E0.*x2.^2);
+    dffdx = reallog(1-E0).*(1-E0).^(1./x2)./(E0.*x2.^2);
 else
-    dffdx = log(1-E0).*(1-E0).^(1./x2)./(E0.*x2);
+    dffdx = reallog(1-E0).*(1-E0).^(1./x2)./(E0.*x2);
 end
 % ... and flow field, derivatives, etc...
 f = zeros(n,1);
@@ -105,7 +105,7 @@ for i=1:nreg
     
     if in.linearized
         
-        tmp = log(1-E0(i))./E0(i);
+        tmp = reallog(1-E0(i))./E0(i);
         
         dfdp(ind1(i),n1(i):n1(i)+3) = [0,0,0,...
             -dsdp(i).*(1+tmp).*Xt(n2(i))./(tau0(i).*E0(i))];
@@ -131,8 +131,8 @@ for i=1:nreg
         dfdp(ind3(i),n1(i):n1(i)+3) = kaf(i).*[-x2(i)+1,0,0,0];
         dfdp(ind4(i),n1(i):n1(i)+3) = kas(i).*[-x1(i),0,0,0];
         dfdp(in.ind5(i),n1(i):n1(i)+3) = [0,0,...
-            log(x3(i)).*fv(i)./(tau0(i).*x3(i).*alpha(i)),...
-            log(x3(i)).*fv(i)./(tau0(i).*x3(i).*alpha(i))];
+            reallog(x3(i)).*fv(i)./(tau0(i).*x3(i).*alpha(i)),...
+            reallog(x3(i)).*fv(i)./(tau0(i).*x3(i).*alpha(i))];
         
     end
     

@@ -76,7 +76,7 @@ dgdx = zeros(n,nreg);
 dgdp = zeros(size(P,1),nreg);
 
 % Evaluate observation function
-x4x3 = exp(log(x4)-log(x3));
+x4x3 = exp(reallog(x4)-log(x3));
 gx = V0.*(k1.*(1-x4) + k2.*(1-x4x3) + k3.*(1-x3));
 
 % Evaluate gradient wrt states and parameters
